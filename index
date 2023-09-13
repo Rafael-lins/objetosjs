@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Veículo Coderhouse</title>
+</head>
+<body>
+    <h1>Simulador de Veículo Coderhouse</h1>
+    
+    <div id="info-veiculo">
+        <!-- As informações do veículo serão exibidas aqui -->
+    </div>
+
+    <button id="acelerar-btn">Acelerar 10 km/h</button>
+    <button id="frear-btn">Frear 10 km/h</button>
+
+    <script>
+        class Veiculo {
+            constructor(marca, modelo, ano, velocidadeAtual = 0) {
+                this.marca = marca;
+                this.modelo = modelo;
+                this.ano = ano;
+                this.velocidadeAtual = velocidadeAtual;
+            }
+
+            acelerar(aceleracao) {
+                this.velocidadeAtual += aceleracao;
+                document.getElementById('info-veiculo').innerHTML = `O veículo acelerou para ${this.velocidadeAtual} km/h.`;
+            }
+
+            frear(freio) {
+                this.velocidadeAtual -= freio;
+                if (this.velocidadeAtual < 0) {
+                    this.velocidadeAtual = 0;
+                }
+                document.getElementById('info-veiculo').innerHTML = `O veículo freou para ${this.velocidadeAtual} km/h.`;
+            }
+        }
+
+        const meuCarro = new Veiculo("Toyota", "Corolla", 2022);
+
+        document.getElementById('info-veiculo').innerHTML = `Marca: ${meuCarro.marca}, Modelo: ${meuCarro.modelo}, Ano: ${meuCarro.ano}, Velocidade Atual: ${meuCarro.velocidadeAtual} km/h`;
+
+        document.getElementById('acelerar-btn').addEventListener('click', function() {
+            meuCarro.acelerar(10); // Acelerando em 10 km/h
+        });
+
+        document.getElementById('frear-btn').addEventListener('click', function() {
+            meuCarro.frear(10); // Freando em 10 km/h
+        });
+    </script>
+</body>
+</html>
